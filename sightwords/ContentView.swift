@@ -39,7 +39,7 @@ struct ContentView: View {
                             CardView(card: self.cardsViewModel.cards[index], index: index + 1) {
                                 self.cardsViewModel.removeCard(at: index)
                             }
-                            //.stacked(at: index, in: self.cards.count)
+                            .stacked(at: index, in: self.cardsViewModel.cards.count)
                         }
                     }
                 }
@@ -57,8 +57,13 @@ struct ContentView: View {
 }
 
 extension View {
-    func stacked(at position: Int, in total: Int) -> some View {
+    func stacked(at position: Int, in total: Int, maxOffset: CGFloat = 3) -> some View {
         let offset = CGFloat(total - position)
+        
+        guard offset <= maxOffset else {
+            return self.offset(CGSize(width: 0, height: maxOffset * -10))
+        }
+        
         return self.offset(CGSize(width: 0, height: offset * -10))
     }
 }
