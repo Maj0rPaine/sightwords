@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct EditCardsView: View {
-    @State private var newTitle = ""
-    
     @Binding var showEditScreen: Bool
     
     @ObservedObject var cardsViewModel: CardsViewModel
+    
+    @State private var newTitle = ""
 
     var body: some View {
         NavigationView {

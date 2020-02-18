@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card {
+struct Card  {
     let title: String
 
     static var example: Card {
@@ -16,9 +16,9 @@ struct Card {
     }
     
     static func load() -> [Card]? {
-        guard let settingsURL = Bundle.main.path(forResource: "Words", ofType: "plist"),
-        let data = try? Data(contentsOf: URL(fileURLWithPath: settingsURL)),
-        let words = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String] else { return nil }
+        guard let url = Bundle.main.url(forResource: "Words", withExtension: "plist"),
+            let data = try? Data(contentsOf: url),
+            let words = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String] else { return nil }
         return words.map { Card(title: $0) }
     }
 }

@@ -10,7 +10,14 @@ import SwiftUI
 
 class CardsViewModel: ObservableObject {
     @Published var cards = [Card]()
+    
+    var settings = UserSettings()
+    
+    /// Temporarily store last removed card
+    var lastRemoved: Card?
         
+    // MARK: - Cards view
+    
     func resetCards() {
         if cards.isEmpty {
             loadCards()
@@ -25,9 +32,19 @@ class CardsViewModel: ObservableObject {
     }
     
     func removeCard(at index: Int) {
+        lastRemoved = cards[index]
         cards.remove(at: index)
     }
+    
+    func undoRemove() {
+        guard let card = lastRemoved,
+            settings.undoLastCardRemove else { return }
+        cards.append(card)
+        lastRemoved = nil
+    }
 
+    // MARK: - Edit cards
+    
     func sortCards() {
         cards.sort { $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
     }
@@ -38,15 +55,15 @@ class CardsViewModel: ObservableObject {
         
         let card = Card(title: trimmedTitle)
         cards.insert(card, at: 0)
-        saveData()
+        //saveData()
     }
 
     func removeCards(at offsets: IndexSet) {
         cards.remove(atOffsets: offsets)
-        saveData()
+        //saveData()
     }
     
-    func saveData() {
-        
-    }
+//    func saveData() {
+//
+//    }
 }

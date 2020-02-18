@@ -8,27 +8,27 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView: View {    
     @ObservedObject var cardsViewModel = CardsViewModel()
     
-    @State var showEditScreen = false
+    @State var showSettingsScreen = false
     
     var body: some View {
         ZStack {
             Color(.black)
                 .edgesIgnoringSafeArea(.all)
             
-            //            VStack {
-            //                HStack {
-            //                    Spacer()
-            //                    Button("Settings", action: {
-            //                        self.showEditScreen.toggle()
-            //                    })
-            //                    .padding()
-            //                }
-            //
-            //                Spacer()
-            //            }
+            VStack {
+                HStack {
+                    Spacer()
+                    Button("Settings", action: {
+                        self.showSettingsScreen.toggle()
+                    })
+                    .padding()
+                }
+                
+                Spacer()
+            }
             
             VStack {
                 if cardsViewModel.cards.isEmpty {
@@ -40,18 +40,21 @@ struct ContentView: View {
                                 self.cardsViewModel.removeCard(at: index)
                             }
                             .stacked(at: index, in: self.cardsViewModel.cards.count)
+                            .environmentObject(self.cardsViewModel.settings)
                         }
                     }
                 }
             }
             .padding()
         }
+        .onTapGesture(count: cardsViewModel.settings.tapsToUndoCardRemoved, perform: cardsViewModel.undoRemove)
         .onAppear(perform: cardsViewModel.resetCards)
-        .sheet(isPresented: $showEditScreen, onDismiss: {
-            self.showEditScreen = false
+        .sheet(isPresented: $showSettingsScreen, onDismiss: {
+            self.showSettingsScreen = false
             self.cardsViewModel.resetCards()
         }) {
-            EditCardsView(showEditScreen: self.$showEditScreen, cardsViewModel: self.cardsViewModel)
+            SettingsView(showSettingsScreen: self.$showSettingsScreen)
+                .environmentObject(self.cardsViewModel.settings)
         }
     }
 }

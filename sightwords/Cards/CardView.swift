@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct CardView: View {
+    @EnvironmentObject var settings: UserSettings
+
     let card: Card
     let index: Int
     
     var removal: (() -> Void)? = nil
-    
+        
     @State private var offset = CGSize.zero
     //@State private var feedback = UINotificationFeedbackGenerator()
     
@@ -22,16 +24,18 @@ struct CardView: View {
             RoundedRectangle(cornerRadius: 10, style: .circular)
                 .fill(Color.white)
             
-            VStack {
-                HStack {
+            if settings.showCardNumber {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("\(index)")
+                            .font(.title)
+                            .foregroundColor(.gray)
+                            .padding()
+                    }
+                    
                     Spacer()
-                    Text("\(index)")
-                        .font(.title)
-                        .foregroundColor(.gray)
-                        .padding()
                 }
-                
-                Spacer()
             }
                 
             VStack(alignment: .center) {
