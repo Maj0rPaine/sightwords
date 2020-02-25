@@ -9,22 +9,21 @@
 import SwiftUI
 
 struct CardView: View {
-    @EnvironmentObject var settings: UserSettings
-
+    @EnvironmentObject var userData: UserData
+    
     let card: Card
     let index: Int
     
     var removal: (() -> Void)? = nil
         
     @State private var offset = CGSize.zero
-    //@State private var feedback = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10, style: .circular)
                 .fill(Color.white)
             
-            if settings.showCardNumber {
+            if userData.showCardNumber {
                 VStack {
                     HStack {
                         Spacer()
@@ -37,13 +36,13 @@ struct CardView: View {
                     Spacer()
                 }
             }
-                
+            
             VStack(alignment: .center) {
                 Text(card.title)
-                    .font(.system(size: 100))
+                    .font(.system(size: 90))
                     .bold()
                     .foregroundColor(.black)
-                    .padding(EdgeInsets(top: 75, leading: 0, bottom: 75, trailing: 0))
+                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .leastNormalMagnitude)
@@ -55,18 +54,16 @@ struct CardView: View {
             DragGesture(minimumDistance: 10)
                 .onChanged { gesture in
                     self.offset = gesture.translation
-                    //self.feedback.prepare()
-                }
-                .onEnded { _ in
-                    if abs(self.offset.width) > 100 {
-                        //self.feedback.notificationOccurred(.success)
-                        self.removal?()
-                    } else {
-                        withAnimation {
-                            self.offset = .zero
-                        }
+            }
+            .onEnded { _ in
+                if abs(self.offset.width) > 100 {
+                    self.removal?()
+                } else {
+                    withAnimation {
+                        self.offset = .zero
                     }
                 }
+            }
         )
     }
 }

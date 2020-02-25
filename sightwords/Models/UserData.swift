@@ -1,5 +1,5 @@
 //
-//  UserSettings.swift
+//  UserData.swift
 //  sightwords
 //
 //  Created by Chris Paine on 2/17/20.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-class UserSettings: ObservableObject {
+final class UserData: ObservableObject {
+    @Published var cards = Card.load()
+    
     @Published var showCardNumber = UserDefaults.standard.bool(forKey: UserDefaults.showCardNumber) {
         didSet {
             UserDefaults.standard.set(self.showCardNumber, forKey: UserDefaults.showCardNumber)

@@ -12,7 +12,7 @@ struct Card  {
     let title: String
 
     static var example: Card {
-        return Card(title: "Label")
+        return Card(title: "Where")
     }
     
     static func load() -> [Card]? {
