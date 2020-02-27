@@ -8,6 +8,29 @@
 
 import SwiftUI
 
+struct CardNumberView: View {
+    var number: String
+    
+    var body: some View {
+        Text(number)
+            .font(.title)
+            .foregroundColor(.gray)
+            .padding()
+    }
+}
+
+struct CardTitleView: View {
+    var title: String
+    
+    var body: some View {
+        Text(title)
+            .font(.system(size: 90))
+            .bold()
+            .foregroundColor(.black)
+            .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+    }
+}
+
 struct CardView: View {
     @EnvironmentObject var userData: UserData
     
@@ -27,10 +50,7 @@ struct CardView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        Text("\(index)")
-                            .font(.title)
-                            .foregroundColor(.gray)
-                            .padding()
+                        CardNumberView(number: "\(index)")
                     }
                     
                     Spacer()
@@ -38,11 +58,7 @@ struct CardView: View {
             }
             
             VStack(alignment: .center) {
-                Text(card.title)
-                    .font(.system(size: 90))
-                    .bold()
-                    .foregroundColor(.black)
-                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+                CardTitleView(title: card.title)
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .leastNormalMagnitude)
@@ -65,5 +81,21 @@ struct CardView: View {
                 }
             }
         )
+        .onTapGesture(count: 1, perform: {
+            withAnimation {
+                self.userData.showCardNumber.toggle()
+            }
+        })
     }
 }
+
+#if DEBUG
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+      Group {
+        CardView(card: Card.example, index: 0)
+            .environmentObject(UserData())
+      }
+   }
+}
+#endif
