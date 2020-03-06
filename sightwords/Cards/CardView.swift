@@ -58,7 +58,7 @@ struct CardView: View {
             }
             
             VStack(alignment: .center) {
-                CardTitleView(title: card.title)
+                CardTitleView(title: card.title.caseType(LetterCaseType(rawValue: userData.letterCase) ?? .lowercase))
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .leastNormalMagnitude)

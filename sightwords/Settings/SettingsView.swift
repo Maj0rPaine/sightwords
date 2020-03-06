@@ -12,15 +12,23 @@ struct SettingsView: View {
     @EnvironmentObject var userData: UserData
 
     @Binding var showSettingsScreen: Bool
-        
+            
     var body: some View {
         NavigationView {
             Form {
-                Section {
+                Section(header: Text("Card Style")) {
                     Toggle(isOn: $userData.showCardNumber) {
                         Text("Show card number")
                     }
                     
+                    Picker(selection: $userData.letterCase, label: Text("Letter case")) {
+                        ForEach(0 ..< userData.letterCaseTypes.count) {
+                            Text(self.userData.letterCaseTypes[$0]).tag($0)
+                        }
+                    }.pickerStyle(DefaultPickerStyle())
+                }
+                
+                Section(header: Text("Gestures")) {
                     Toggle(isOn: $userData.undoLastCardRemove) {
                         Text("Tap to show last card")
                     }
@@ -38,7 +46,7 @@ struct SettingsView: View {
                         Text("Edit Cards")
                         Spacer()
                         Text("\(userData.cards?.count ?? 0)")
-                    }.disabled(true)
+                    }.disabled(false)
                 }
             }
             .navigationBarTitle("Settings")

@@ -8,5 +8,14 @@
 	<true/>
 	<key>TapsToUndoCardRemoved</key>
 	<integer>2</integer>
+	<key>LetterCase</key>
+	<integer>0</integer>
+	<key>LetterCaseTypes</key>
+	<array>
+		<string>Lowercase</string>
+		<string>Uppercase</string>
+		<string>Capitalized</string>
+		<string>Random</string>
+	</array>
 </dict>
 </plist>
