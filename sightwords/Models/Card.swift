@@ -10,15 +10,16 @@ import Foundation
 
 struct Card  {
     let title: String
+    var isSelected: Bool
 
     static var example: Card {
-        return Card(title: "Where")
+        return Card(title: "Where", isSelected: false)
     }
     
-    static func load() -> [Card]? {
+    static func load() -> [Card] {
         guard let url = Bundle.main.url(forResource: "Words", withExtension: "plist"),
             let data = try? Data(contentsOf: url),
-            let words = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String] else { return nil }
-        return words.map { Card(title: $0) }
+            let words = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String] else { return [] }
+        return words.map { Card(title: $0, isSelected: true) }
     }
 }

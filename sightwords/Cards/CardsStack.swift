@@ -21,7 +21,7 @@ struct CardsStack: View {
             VStack {
                 HStack {
                     Button("Reload", action: {
-                        self.cardsViewModel.reloadCards()
+                        self.cardsViewModel.resetCards()
                     }).padding()
                     
                     Spacer()
@@ -48,9 +48,10 @@ struct CardsStack: View {
             .padding(10)
         }
         .onTapGesture(count: cardsViewModel.userData.tapsToUndoCardRemoved, perform: cardsViewModel.undoRemove)
-        .onAppear(perform: cardsViewModel.resetCards)
+        .onAppear(perform: cardsViewModel.loadCards)
         .sheet(isPresented: $showSettingsScreen, onDismiss: {
             self.showSettingsScreen = false
+            self.cardsViewModel.resetCards()
         }) {
             SettingsView(showSettingsScreen: self.$showSettingsScreen)
                 .environmentObject(self.cardsViewModel.userData)

@@ -18,22 +18,20 @@ class CardsStackViewModel: ObservableObject {
     /// Temporarily store last removed card
     var lastRemoved: Card?
         
-    private func loadCards() {
-        if let cards = userData.cards?.shuffled() {
-            self.cards = cards
+    func loadCards() {
+        var cards = userData.cards.filter({ $0.isSelected })
+        
+        if cards.isEmpty {
+            cards = userData.cards
         }
+        
+        self.cards = cards.shuffled()
         //self.cards = [Card.example]
     }
     
     func resetCards() {
         // TODO: Reset state
         
-        if cards.isEmpty {
-            loadCards()
-        }
-    }
-    
-    func reloadCards() {
         loadCards()
     }
     

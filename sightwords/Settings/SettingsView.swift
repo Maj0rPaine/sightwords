@@ -42,10 +42,10 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: EditCardsView().environmentObject(userData)) {
+                    NavigationLink(destination: EditCardsView().environmentObject(userData)) { // Currently broken (only navigates once) on Xcode 11.3
                         Text("Edit Cards")
                         Spacer()
-                        Text("\(userData.cards?.count ?? 0)")
+                        Text("\(userData.cards.count)")
                     }.disabled(false)
                 }
             }
