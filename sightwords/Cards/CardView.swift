@@ -35,11 +35,14 @@ struct CardView: View {
     @EnvironmentObject var userData: UserData
     
     let card: Card
+    
     let index: Int
     
     var removal: (() -> Void)? = nil
         
     @State private var offset = CGSize.zero
+    
+    @State private var title: String = ""
     
     var body: some View {
         ZStack {
@@ -58,7 +61,7 @@ struct CardView: View {
             }
             
             VStack(alignment: .center) {
-                CardTitleView(title: card.title.caseType(LetterCaseType(rawValue: userData.letterCase) ?? .lowercase))
+                CardTitleView(title: title)
             }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .leastNormalMagnitude)
@@ -86,6 +89,14 @@ struct CardView: View {
                 self.userData.showCardNumber.toggle()
             }
         })
+        .onAppear {
+            self.setTitleCaseType()
+        }
+    }
+    
+    func setTitleCaseType() {
+        let type = LetterCaseType(rawValue: self.userData.letterCase)
+        self.title = self.card.title.caseType(type ?? .lowercase)
     }
 }
 
