@@ -17,7 +17,8 @@
 		3F27C45523E3E124000D610B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F27C45423E3E124000D610B /* Assets.xcassets */; };
 		3F27C45823E3E124000D610B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F27C45723E3E124000D610B /* Preview Assets.xcassets */; };
 		3F27C45B23E3E124000D610B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F27C45923E3E124000D610B /* LaunchScreen.storyboard */; };
-		3FFE858323FB79B8001B7BA3 /* CardsStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE858223FB79B8001B7BA3 /* CardsStackViewModel.swift */; };
+		3FB25DD3241B2694003BE5E6 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB25DD2241B2694003BE5E6 /* TimerView.swift */; };
+		3FFA8BB42419B4430080BB21 /* Stack+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA8BB32419B4430080BB21 /* Stack+View.swift */; };
 		3FFE858523FB8F04001B7BA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE858423FB8F04001B7BA3 /* SettingsView.swift */; };
 		3FFE858823FB9E74001B7BA3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFE858723FB9E74001B7BA3 /* UserData.swift */; };
 		3FFE858A23FC4309001B7BA3 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE858923FC4309001B7BA3 /* DefaultPreferences.plist */; };
@@ -36,7 +37,8 @@
 		3F27C45723E3E124000D610B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F27C45A23E3E124000D610B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F27C45C23E3E124000D610B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FFE858223FB79B8001B7BA3 /* CardsStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsStackViewModel.swift; sourceTree = "<group>"; };
+		3FB25DD2241B2694003BE5E6 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		3FFA8BB32419B4430080BB21 /* Stack+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stack+View.swift"; sourceTree = "<group>"; };
 		3FFE858423FB8F04001B7BA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3FFE858723FB9E74001B7BA3 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3FFE858923FC4309001B7BA3 /* DefaultPreferences.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
@@ -57,8 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				3F27C45223E3E122000D610B /* CardsStack.swift */,
-				3FFE858223FB79B8001B7BA3 /* CardsStackViewModel.swift */,
 				3F20636123EC32CB001C3B5E /* CardView.swift */,
+				3FFA8BB32419B4430080BB21 /* Stack+View.swift */,
+				3FB25DD2241B2694003BE5E6 /* TimerView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -196,11 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB25DD3241B2694003BE5E6 /* TimerView.swift in Sources */,
 				3F20636223EC32CB001C3B5E /* CardView.swift in Sources */,
 				3FFE858523FB8F04001B7BA3 /* SettingsView.swift in Sources */,
-				3FFE858323FB79B8001B7BA3 /* CardsStackViewModel.swift in Sources */,
 				3F20636023EC32A3001C3B5E /* EditCardsView.swift in Sources */,
 				3FFE858823FB9E74001B7BA3 /* UserData.swift in Sources */,
+				3FFA8BB42419B4430080BB21 /* Stack+View.swift in Sources */,
 				3F27C44C23E3E122000D610B /* AppDelegate.swift in Sources */,
 				3F20635E23EC327D001C3B5E /* Card.swift in Sources */,
 				3F27C45323E3E122000D610B /* CardsStack.swift in Sources */,

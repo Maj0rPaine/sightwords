@@ -65,6 +65,12 @@ final class UserData: ObservableObject {
             UserDefaults.standard.set(self.tapsToUndoCardRemoved, forKey: UserDefaults.tapsToUndoCardRemoved)
         }
     }
+    
+    @Published var timerSeconds = UserDefaults.standard.integer(forKey: UserDefaults.timerSeconds) {
+        didSet {
+            UserDefaults.standard.set(self.timerSeconds, forKey: UserDefaults.timerSeconds)
+        }
+    }
 }
 
 extension UserDefaults {
@@ -73,6 +79,7 @@ extension UserDefaults {
     static let tapsToUndoCardRemoved = "TapsToUndoCardRemoved"
     static let letterCase = "LetterCase"
     static let letterCaseTypes = "LetterCaseTypes"
+    static let timerSeconds = "TimerSeconds"
     
     func registerDefaults() {
         guard let url = Bundle.main.url(forResource: "DefaultPreferences", withExtension: "plist"),

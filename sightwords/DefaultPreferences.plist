@@ -17,5 +17,7 @@
 		<string>Capitalized</string>
 		<string>Random</string>
 	</array>
+	<key>TimerSeconds</key>
+	<integer>5</integer>
 </dict>
 </plist>

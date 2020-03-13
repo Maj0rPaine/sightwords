@@ -34,11 +34,12 @@ struct SettingsView: View {
                     }
                     
                     if userData.undoLastCardRemove {
-                        HStack {
-                            Spacer()
-                            Stepper("\(userData.tapsToUndoCardRemoved) Taps required", value: $userData.tapsToUndoCardRemoved, in: 0...10)
-                        }
+                        Stepper("Taps required: \(userData.tapsToUndoCardRemoved)", value: $userData.tapsToUndoCardRemoved, in: 0...10)
                     }
+                }
+                
+                Section {
+                    Stepper("Timer seconds: \(userData.timerSeconds)", value: $userData.timerSeconds, in: 0...100)
                 }
                 
                 Section {
