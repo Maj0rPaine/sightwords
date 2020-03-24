@@ -9,13 +9,19 @@
 import SwiftUI
 
 struct TimerView: View {
-    @Binding var timeRemaining: Int
+    @Binding var timeRemaining: Int {
+        didSet {
+            if self.timeRemaining < 0 {
+                self.timer.upstream.connect().cancel()
+            }
+        }
+    }
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        Text("Time: \(timeRemaining)")
-            .font(.largeTitle)
+        Text(timeRemaining < 0 ? "Stopped" : "Time: \(timeRemaining)")
+            .font(.title)
             .foregroundColor(.white)
             .padding(.horizontal, 20)
             .padding(.vertical, 5)

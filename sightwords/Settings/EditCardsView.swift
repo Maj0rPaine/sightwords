@@ -8,30 +8,31 @@
 
 import SwiftUI
 
-class EditCardsViewModel: ObservableObject {
-    @Published var cards = [Card]()
-    
-    func loadCards() {
-        self.cards = Card.load().sorted { $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
-    }
-    
-    func addCard(title: String) {
-        let trimmedTitle = title.trimmingCharacters(in: .whitespaces)
-        guard trimmedTitle.isEmpty == false else { return }
-        
-        let card = Card(title: trimmedTitle, isSelected: false)
-        cards.insert(card, at: 0)
-    }
-    
-    func removeCards(at offsets: IndexSet) {
-        cards.remove(atOffsets: offsets)
-    }
-}
+//class EditCardsViewModel: ObservableObject {
+//    @Published var cards = [Card]()
+//
+//    func loadCards() {
+//        self.cards = Card.load().sorted { $0.title.caseInsensitiveCompare($1.title) == .orderedAscending }
+//    }
+//
+//    func addCard(title: String) {
+//        let trimmedTitle = title.trimmingCharacters(in: .whitespaces)
+//        guard trimmedTitle.isEmpty == false else { return }
+//
+//        let card = Card(title: trimmedTitle, isSelected: false)
+//        cards.insert(card, at: 0)
+//    }
+//
+//    func removeCards(at offsets: IndexSet) {
+//        cards.remove(atOffsets: offsets)
+//    }
+//}
+
 
 struct EditCardsView: View {
     @EnvironmentObject var userData: UserData
     
-    @ObservedObject var editCardsViewModel = EditCardsViewModel()
+    //@ObservedObject var editCardsViewModel = EditCardsViewModel()
     
     @State private var newTitle = ""
         

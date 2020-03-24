@@ -41,6 +41,7 @@ struct CardsStack: View {
                     Spacer()
                     
                     Button("Settings", action: {
+                        self.stopTimer()
                         self.showSettingsScreen.toggle()
                     }).padding()
                 }
@@ -51,7 +52,12 @@ struct CardsStack: View {
                     ForEach(0..<cards.count, id: \.self) { index in
                         CardView(card: self.cards[index], index: index + 1) {
                             self.removeCard(at: index)
-                            self.resetTimer()
+                            
+                            if self.cards.isEmpty {
+                                self.stopTimer()
+                            } else {
+                                self.resetTimer()
+                            }
                         }
                         .stacked(at: index, in: self.cards.count)
                         .environmentObject(self.userData)
@@ -83,7 +89,7 @@ struct CardsStack: View {
         self.cards = cards.shuffled()
         //self.cards = [Card.example]
         
-        self.timeRemaining = userData.timerSeconds
+        self.setTime()
     }
     
     func removeCard(at index: Int) {
@@ -104,6 +110,14 @@ struct CardsStack: View {
     
     func notifyFeedback(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType) {
         self.feedback.notificationOccurred(feedbackType)
+    }
+    
+    func setTime() {
+        self.timeRemaining = userData.timerSeconds
+    }
+    
+    func stopTimer() {
+        self.timeRemaining = -1
     }
     
     func resetTimer() {
