@@ -38,15 +38,18 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section {
+                Section(header: Text("Timer")) {
                     Stepper("Timer seconds: \(userData.timerSeconds)", value: $userData.timerSeconds, in: 0...100)
+                    Toggle(isOn: $userData.timerSoundEnabled) {
+                        Text("Enable countdown sound")
+                    }
                 }
                 
                 Section {
                     NavigationLink(destination: EditCardsView().environmentObject(userData)) { // Currently broken (only navigates once) on Xcode 11.3
-                        Text("Edit Cards")
+                        Text("Select Cards")
                         Spacer()
-                        Text("\(userData.cards.count)")
+                        Text("\(userData.selectedCount)")
                     }.disabled(false)
                 }
             }

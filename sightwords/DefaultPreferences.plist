@@ -19,5 +19,7 @@
 	</array>
 	<key>TimerSeconds</key>
 	<integer>5</integer>
+	<key>TimerSoundEnabled</key>
+	<true/>
 </dict>
 </plist>

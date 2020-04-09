@@ -35,7 +35,7 @@ struct CardsStack: View {
                     Spacer()
                     
                     if userData.timerSeconds > 0 {
-                        TimerView(timeRemaining: $timeRemaining)
+                        TimerView(timeRemaining: $timeRemaining).environmentObject(userData)
                     }
                     
                     Spacer()
@@ -78,7 +78,9 @@ struct CardsStack: View {
                 .environmentObject(self.userData)
         }
     }
-    
+}
+     
+extension CardsStack {
     func loadCards() {
         var cards = userData.cards.filter({ $0.isSelected })
         
@@ -121,7 +123,7 @@ struct CardsStack: View {
     }
     
     func resetTimer() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.timeRemaining = self.userData.timerSeconds
         }
     }

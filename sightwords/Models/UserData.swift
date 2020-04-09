@@ -45,6 +45,16 @@ final class UserData: ObservableObject {
             UserDefaults.standard.set(self.timerSeconds, forKey: UserDefaults.timerSeconds)
         }
     }
+    
+    @Published var timerSoundEnabled = UserDefaults.standard.bool(forKey: UserDefaults.timerSoundEnabled) {
+        didSet {
+            UserDefaults.standard.set(self.timerSoundEnabled, forKey: UserDefaults.timerSoundEnabled)
+        }
+    }
+    
+    var selectedCount: Int {
+        return cards.filter { $0.isSelected }.count
+    }
 }
 
 extension UserDefaults {
@@ -54,6 +64,7 @@ extension UserDefaults {
     static let letterCase = "LetterCase"
     static let letterCaseTypes = "LetterCaseTypes"
     static let timerSeconds = "TimerSeconds"
+    static let timerSoundEnabled = "TimerSoundEnabled"
     
     func registerDefaults() {
         guard let url = Bundle.main.url(forResource: "DefaultPreferences", withExtension: "plist"),
